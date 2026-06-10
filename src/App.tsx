@@ -936,9 +936,6 @@ function ProjectArtwork({
               background: `radial-gradient(circle at 58% 46%, ${project.accent}33, transparent 35%)`,
             }}
           />
-          <div className="absolute right-6 top-6 rounded-full border border-white/18 bg-[#0C0C0C]/55 px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[#D7E2EA]/75 backdrop-blur">
-            Live system visual
-          </div>
         </>
       )}
       <div className="absolute inset-0 opacity-55 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:42px_42px]" />
