@@ -71,6 +71,7 @@ const experienceHighlights = [
 const strengths = [
   {
     name: "Product & Device Software",
+    video: assetPath("assets/strength-product-device.mp4"),
     description:
       "Windows product applications, engineering tools, calibration workflows, diagnostic screens, PCAN/CAN communication and report generation.",
     what:
@@ -81,6 +82,7 @@ const strengths = [
   },
   {
     name: "Industrial / MES Systems",
+    video: assetPath("assets/strength-industrial-mes.mp4"),
     description:
       "Camstar MES, semiconductor factory workflows, traceability, barcode and label verification, Oracle/SQL troubleshooting and production support.",
     what:
@@ -91,6 +93,7 @@ const strengths = [
   },
   {
     name: "C#/.NET Delivery",
+    video: assetPath("assets/strength-dotnet-delivery.mp4"),
     description:
       "C#/.NET Framework, WinForms, WPF, ASP.NET exposure, REST/SOAP services, database-driven applications and full SDLC delivery.",
     what:
@@ -101,6 +104,7 @@ const strengths = [
   },
   {
     name: "Legacy Modernization",
+    video: assetPath("assets/strength-legacy-modernization.mp4"),
     description:
       "Modernizing older .NET, SQL CE, Access and C++ application areas while keeping active business and factory users stable.",
     what:
@@ -111,6 +115,7 @@ const strengths = [
   },
   {
     name: "Technical Leadership",
+    video: assetPath("assets/strength-leadership.mp4"),
     description:
       "Task coordination, solution review, debugging support, mentoring, stakeholder communication, documentation and issue ownership.",
     what:
@@ -1014,10 +1019,19 @@ function DetailPanel({
             <ProjectArtwork project={panel.item} />
           ) : (
             <div className="relative h-full min-h-[260px] overflow-hidden bg-[#111] p-8">
+              <video
+                className="absolute inset-0 h-full w-full object-cover opacity-50 saturate-[1.12]"
+                src={panel.item.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
               <div
                 className="absolute inset-0"
                 style={{
-                  background: `radial-gradient(circle at 55% 45%, ${accent}44, transparent 36%), linear-gradient(135deg, #111, #050505)`,
+                  background: `radial-gradient(circle at 55% 45%, ${accent}44, transparent 38%), linear-gradient(180deg, rgba(12,12,12,0.28), rgba(5,5,5,0.9))`,
                 }}
               />
               <div className="absolute inset-0 opacity-45 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:44px_44px]" />
@@ -1424,39 +1438,60 @@ function ServicesSection({
             delay={index * 0.1}
             onClick={() => onStrengthClick(strength, index)}
             ariaLabel={`Open details for ${strength.name}`}
-            className="group min-h-[390px] overflow-hidden rounded-[32px] border border-[#D7E2EA]/15 bg-white/[0.035] p-6 text-left transition-transform duration-300 hover:-translate-y-2"
+            className="group relative min-h-[520px] overflow-hidden rounded-[32px] border border-[#D7E2EA]/15 bg-white/[0.035] text-left transition-transform duration-300 hover:-translate-y-2"
           >
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-[clamp(2.5rem,5vw,5rem)] font-black leading-none text-[#D7E2EA]/10">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span
-                className="grid h-14 w-14 place-items-center rounded-2xl text-[#0C0C0C]"
-                style={{ background: accent, boxShadow: `0 0 52px ${accent}44` }}
-              >
-                <Icon className="h-7 w-7" strokeWidth={2.4} />
-              </span>
-            </div>
-            <h3 className="mt-8 text-[clamp(1.4rem,2vw,2.2rem)] font-black uppercase leading-none text-[#D7E2EA]">
-                {strength.name}
-            </h3>
-            <p className="mt-5 text-[clamp(0.9rem,1.1vw,1.05rem)] font-light leading-relaxed text-[#D7E2EA]/68">
-                {strength.description}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {(skillGroups[index]?.skills.slice(0, 4) ?? []).map((skill) => (
-                <span
-                  key={skill}
-                  className="rounded-full border border-[#D7E2EA]/12 bg-[#0C0C0C]/55 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-[#D7E2EA]/70"
-                >
-                  {skill}
+            <video
+              className="absolute inset-0 h-full w-full object-cover opacity-48 saturate-[1.15] transition-transform duration-700 group-hover:scale-105"
+              src={strength.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.2)_0%,rgba(12,12,12,0.58)_46%,rgba(12,12,12,0.94)_100%)]" />
+            <div
+              className="absolute inset-0 opacity-45"
+              style={{
+                background: `radial-gradient(circle at 55% 34%, ${accent}36, transparent 40%)`,
+              }}
+            />
+            <div className="absolute inset-0 opacity-35 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:42px_42px]" />
+            <div className="relative z-10 flex min-h-[520px] flex-col justify-between p-6">
+              <div className="flex items-start justify-between gap-4">
+                <span className="text-[clamp(3.6rem,6vw,6.4rem)] font-black leading-none text-[#D7E2EA]/12">
+                  {String(index + 1).padStart(2, "0")}
                 </span>
-              ))}
+                <span
+                  className="grid h-14 w-14 place-items-center rounded-2xl text-[#0C0C0C]"
+                  style={{ background: accent, boxShadow: `0 0 52px ${accent}66` }}
+                >
+                  <Icon className="h-7 w-7" strokeWidth={2.4} />
+                </span>
+              </div>
+              <div>
+                <h3 className="text-[clamp(1.4rem,2vw,2.2rem)] font-black uppercase leading-none text-[#D7E2EA]">
+                  {strength.name}
+                </h3>
+                <p className="mt-5 text-[clamp(0.9rem,1.1vw,1.05rem)] font-light leading-relaxed text-[#D7E2EA]/72">
+                  {strength.description}
+                </p>
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {(skillGroups[index]?.skills.slice(0, 4) ?? []).map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border border-[#D7E2EA]/12 bg-[#0C0C0C]/60 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-[#D7E2EA]/75 backdrop-blur"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                <span className="mt-8 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.26em] text-[#D7E2EA]/60 transition-colors duration-200 group-hover:text-[#C8FF2E]">
+                  Open details
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
             </div>
-            <span className="mt-8 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.26em] text-[#D7E2EA]/55 transition-colors duration-200 group-hover:text-[#C8FF2E]">
-              Open details
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </span>
           </FadeIn>
             );
           })()
