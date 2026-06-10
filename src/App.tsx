@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Mail, Phone, X } from "lucide-react";
 import {
   Barcode,
   CheckCircle,
@@ -71,26 +71,51 @@ const strengths = [
     name: "Product & Device Software",
     description:
       "Windows product applications, engineering tools, calibration workflows, diagnostic screens, PCAN/CAN communication and report generation.",
+    what:
+      "I build desktop product software and engineering tools that connect real devices, production data and operator workflows into one reliable application.",
+    helps:
+      "These tools reduce manual checking, make calibration and diagnostics repeatable, and give engineers a stable interface for production support.",
+    examples: ["Tester result import", "PDF certificate generation", "LIDAR calibration", "PCAN/CAN diagnostics"],
   },
   {
     name: "Industrial / MES Systems",
     description:
       "Camstar MES, semiconductor factory workflows, traceability, barcode and label verification, Oracle/SQL troubleshooting and production support.",
+    what:
+      "I work around MES transactions, factory workflows, label verification, lot movement, Oracle-backed data and Camstar-specific customization.",
+    helps:
+      "The systems help production users control process flow, prevent wrong labels or missing data, and keep traceability available when issues happen.",
+    examples: ["Camstar UI customization", "MES business rules", "Barcode verification", "Oracle SQL investigation"],
   },
   {
     name: "C#/.NET Delivery",
     description:
       "C#/.NET Framework, WinForms, WPF, ASP.NET exposure, REST/SOAP services, database-driven applications and full SDLC delivery.",
+    what:
+      "I deliver practical .NET systems across WPF, WinForms, service integration, database workflows, reporting and maintenance-heavy legacy areas.",
+    helps:
+      "This lets teams modernize existing applications without breaking current users, while still adding new integration and reporting capabilities.",
+    examples: ["WPF / Prism MVVM", "WinForms modernization", "REST and SOAP APIs", "SQL-backed applications"],
   },
   {
     name: "Legacy Modernization",
     description:
       "Modernizing older .NET, SQL CE, Access and C++ application areas while keeping active business and factory users stable.",
+    what:
+      "I analyze old applications, recover expected behavior, rebuild missing knowledge and adapt systems to new servers, APIs or operational constraints.",
+    helps:
+      "The business can keep critical tools running after migration, vendor changes or infrastructure upgrades instead of replacing everything at once.",
+    examples: ["Access Control Review recovery", "SMS API vendor migration", "SQL CE / Access cleanup", "C++ and C# MES support"],
   },
   {
     name: "Technical Leadership",
     description:
       "Task coordination, solution review, debugging support, mentoring, stakeholder communication, documentation and issue ownership.",
+    what:
+      "I translate business or factory problems into clear technical tasks, coordinate delivery, review solutions and stay hands-on with debugging.",
+    helps:
+      "This gives teams clearer ownership, faster root-cause analysis and smoother release support when stakeholders need dependable answers.",
+    examples: ["Approval automation lead", "Requirement clarification", "Release documentation", "Production issue ownership"],
   },
 ];
 
@@ -131,6 +156,14 @@ const projects = [
     tags: ["C#/.NET", "SQLite", "Reporting", "Product QA"],
     accent: "#C8FF2E",
     visual: "export",
+    role: "Senior Software Application Engineer Lead",
+    details: [
+      "Enhanced Windows product modules for tester result import and product data handling.",
+      "Improved graph/report presentation and PDF certificate generation for customer-facing product output.",
+      "Worked across requirements, coding, debugging, release notes and technical documentation.",
+    ],
+    impact:
+      "Helped engineering and product users convert tester data into clearer reports and certificates with a more stable delivery workflow.",
   },
   {
     name: "LIDAR Calibration / Motor Control",
@@ -140,6 +173,14 @@ const projects = [
     tags: ["WPF", "WinForms", "PCAN/CAN", "Calibration"],
     accent: "#62D7FF",
     visual: "lidar",
+    role: "Senior Software Engineer",
+    details: [
+      "Built WPF and WinForms tools for calibration, motor tuning and diagnostic workflows.",
+      "Integrated firmware communication and PCAN/CAN operations for device engineering teams.",
+      "Supported traceability flows so calibration activity can be reviewed and repeated.",
+    ],
+    impact:
+      "Made device calibration and motor-control tasks easier to operate, inspect and support during engineering work.",
   },
   {
     name: "STMicro EChecklist & MES",
@@ -150,6 +191,14 @@ const projects = [
     accent: "#BE4CFF",
     visual: "checklist",
     video: "/assets/mes-facility-monitoring.mp4",
+    role: "Team Lead / MES Software Engineer",
+    details: [
+      "Led approval automation for EChecklist workflows used by manufacturing users.",
+      "Enhanced C++ and C# MES modules for label verification, data validation and plant-user controls.",
+      "Coordinated a small engineering team while staying involved in technical delivery.",
+    ],
+    impact:
+      "Reduced manual approval friction and strengthened factory data validation around MES-controlled production workflows.",
   },
   {
     name: "Camstar MES Angular Migration",
@@ -160,6 +209,14 @@ const projects = [
     accent: "#FFB84D",
     visual: "mes",
     video: "/assets/camstar-interaction.mp4",
+    role: "MES Application Engineer",
+    details: [
+      "Customized Camstar MES UI and backend behavior for semiconductor factory requirements.",
+      "Worked with AngularJS, C#, Oracle SQL and client-specific Camstar framework areas.",
+      "Supported deployment, troubleshooting and workflow alignment with production users.",
+    ],
+    impact:
+      "Helped move MES screens and flows into a more usable application experience while preserving factory process behavior.",
   },
   {
     name: "AMD Export SAP / INCA / Ship Services",
@@ -169,6 +226,14 @@ const projects = [
     tags: ["SOAP", "REST", "Camstar", "24/7 Support"],
     accent: "#5DFFB0",
     visual: "integration",
+    role: "Factory / Enterprise Integration Engineer",
+    details: [
+      "Delivered production-critical integration services around SAP, INCA and Camstar transactions.",
+      "Built reporting and service flows using REST/SOAP integrations and semiconductor operations data.",
+      "Supported 24/7 factory system behavior where transaction failure affects production visibility.",
+    ],
+    impact:
+      "Improved business-system connectivity and operational support for global semiconductor production activity.",
   },
   {
     name: "NTT Access Review & SMS Portal",
@@ -178,6 +243,14 @@ const projects = [
     tags: ["C#", "WinForms", "SQL", "API Integration"],
     accent: "#FF5D9E",
     visual: "portal",
+    role: "Senior Software Application Engineer",
+    details: [
+      "Recovered and modernized a legacy Access Control Review Windows application after server migration issues.",
+      "Upgraded a self-service password reset portal to work with a new SMS API vendor.",
+      "Handled requirement clarification, vendor communication, testing, fixes and production deployment.",
+    ],
+    impact:
+      "Restored critical business application continuity and delivered vendor API migration within tight support windows.",
   },
 ];
 
@@ -258,6 +331,9 @@ type FadeInProps = PropsWithChildren<{
   x?: number;
   y?: number;
   className?: string;
+  onClick?: () => void;
+  type?: "button";
+  ariaLabel?: string;
 }>;
 
 function FadeIn({
@@ -267,6 +343,9 @@ function FadeIn({
   x = 0,
   y = 30,
   className,
+  onClick,
+  type,
+  ariaLabel,
   children,
 }: FadeInProps) {
   const MotionElement = useMemo(() => motion.create(as), [as]);
@@ -278,6 +357,9 @@ function FadeIn({
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "50px", amount: 0 }}
       transition={{ delay, duration, ease: [0.25, 0.1, 0.25, 1] }}
+      onClick={onClick}
+      type={type}
+      aria-label={ariaLabel}
     >
       {children}
     </MotionElement>
@@ -486,12 +568,20 @@ function HeroSection() {
             as="h1"
             delay={0.1}
             y={36}
-            className="text-[clamp(5rem,12vw,13rem)] font-black uppercase leading-[0.78] tracking-tight"
+            className="text-[clamp(3.6rem,8.6vw,9.4rem)] font-medium uppercase leading-[0.9] tracking-[0.02em] text-[#D7E2EA]"
           >
-            <span className="block text-[#C8FF2E] drop-shadow-[0_0_34px_rgba(200,255,46,0.28)]">
-              Seong
+            <span className="block">Senior Software</span>
+            <span className="block text-[#C8FF2E] drop-shadow-[0_0_34px_rgba(200,255,46,0.22)]">
+              Engineer
             </span>
-            <span className="block text-[#D7E2EA]">Portfolio</span>
+          </FadeIn>
+          <FadeIn delay={0.18} y={20} className="mt-5 flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-[#D7E2EA]/20 bg-white/[0.045] px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#D7E2EA]">
+              Teh Theam Seong
+            </span>
+            <span className="rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#C8FF2E]">
+              Team Lead / Solution Architect
+            </span>
           </FadeIn>
           <FadeIn
             as="p"
@@ -840,14 +930,210 @@ function ProjectArtwork({
   );
 }
 
+type ActivePanel =
+  | { type: "project"; item: (typeof projects)[number]; index: number }
+  | { type: "strength"; item: (typeof strengths)[number]; index: number }
+  | null;
+
+function DetailPanel({
+  panel,
+  onClose,
+}: {
+  panel: ActivePanel;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!panel) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, panel]);
+
+  if (!panel) return null;
+
+  const isProject = panel.type === "project";
+  const accent = isProject
+    ? panel.item.accent
+    : skillGroups[panel.index]?.accent ?? "#C8FF2E";
+  const title = panel.item.name;
+  const subtitle = isProject ? panel.item.category : "Strength detail";
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[80] grid place-items-center bg-[#050505]/78 px-5 py-8 backdrop-blur-xl"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="relative grid max-h-[88vh] w-full max-w-[1220px] overflow-hidden rounded-[38px] border border-[#D7E2EA]/18 bg-[#0C0C0C] shadow-[0_30px_120px_rgba(0,0,0,0.55)] lg:grid-cols-[0.92fr_1.08fr]"
+        style={{
+          boxShadow: `0 0 110px ${accent}24, 0 30px 120px rgba(0,0,0,0.55)`,
+        }}
+        initial={{ y: 28, scale: 0.96, opacity: 0 }}
+        animate={{ y: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          aria-label="Close details"
+          onClick={onClose}
+          className="absolute right-5 top-5 z-30 grid h-11 w-11 place-items-center rounded-full border border-[#D7E2EA]/20 bg-[#0C0C0C]/75 text-[#D7E2EA] backdrop-blur transition-colors duration-200 hover:bg-white/10"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="relative min-h-[360px] overflow-hidden border-b border-[#D7E2EA]/12 lg:border-b-0 lg:border-r">
+          {isProject ? (
+            <ProjectArtwork project={panel.item} />
+          ) : (
+            <div className="relative h-full min-h-[360px] overflow-hidden bg-[#111] p-8">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `radial-gradient(circle at 55% 45%, ${accent}44, transparent 36%), linear-gradient(135deg, #111, #050505)`,
+                }}
+              />
+              <div className="absolute inset-0 opacity-45 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:44px_44px]" />
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <span className="text-[clamp(5rem,12vw,10rem)] font-black leading-none text-[#D7E2EA]/10">
+                  {String(panel.index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <span
+                    className="mb-6 grid h-20 w-20 place-items-center rounded-[26px] text-[#0C0C0C]"
+                    style={{ background: accent, boxShadow: `0 0 70px ${accent}55` }}
+                  >
+                    {(() => {
+                      const icons = [MonitorSmartphone, Factory, Cpu, Database, Network];
+                      const Icon = icons[panel.index] ?? Cpu;
+                      return <Icon className="h-10 w-10" strokeWidth={2.4} />;
+                    })()}
+                  </span>
+                  <h3 className="max-w-md text-[clamp(2rem,4vw,4.8rem)] font-black uppercase leading-none text-[#D7E2EA]">
+                    {panel.item.name}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="overflow-y-auto p-7 md:p-9">
+          <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: accent }}>
+            {subtitle}
+          </p>
+          <h2 className="mt-4 max-w-3xl text-[clamp(2rem,4vw,4.6rem)] font-black uppercase leading-none text-[#D7E2EA]">
+            {title}
+          </h2>
+
+          {isProject ? (
+            <>
+              <p className="mt-6 text-lg font-light leading-relaxed text-[#D7E2EA]/75">
+                {panel.item.summary}
+              </p>
+              <div className="mt-7 grid gap-4 md:grid-cols-2">
+                <div className="rounded-[26px] border border-[#D7E2EA]/12 bg-white/[0.035] p-5">
+                  <h3 className="text-sm font-black uppercase tracking-widest text-[#D7E2EA]">
+                    My role
+                  </h3>
+                  <p className="mt-3 text-base font-light leading-relaxed text-[#D7E2EA]/72">
+                    {panel.item.role}
+                  </p>
+                </div>
+                <div className="rounded-[26px] border border-[#D7E2EA]/12 bg-white/[0.035] p-5">
+                  <h3 className="text-sm font-black uppercase tracking-widest text-[#D7E2EA]">
+                    Impact
+                  </h3>
+                  <p className="mt-3 text-base font-light leading-relaxed text-[#D7E2EA]/72">
+                    {panel.item.impact}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 rounded-[26px] border border-[#D7E2EA]/12 bg-white/[0.035] p-5">
+                <h3 className="text-sm font-black uppercase tracking-widest text-[#D7E2EA]">
+                  What I built
+                </h3>
+                <div className="mt-4 grid gap-3">
+                  {panel.item.details.map((detail) => (
+                    <div key={detail} className="flex gap-3 text-base font-light leading-relaxed text-[#D7E2EA]/76">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full" style={{ background: accent }} />
+                      {detail}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {panel.item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[#D7E2EA]/14 bg-[#0C0C0C]/60 px-4 py-2 text-xs font-black uppercase tracking-widest text-[#D7E2EA]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="mt-6 text-lg font-light leading-relaxed text-[#D7E2EA]/75">
+                {panel.item.description}
+              </p>
+              <div className="mt-7 grid gap-4 md:grid-cols-2">
+                <div className="rounded-[26px] border border-[#D7E2EA]/12 bg-white/[0.035] p-5">
+                  <h3 className="text-sm font-black uppercase tracking-widest text-[#D7E2EA]">
+                    What I do
+                  </h3>
+                  <p className="mt-3 text-base font-light leading-relaxed text-[#D7E2EA]/72">
+                    {panel.item.what}
+                  </p>
+                </div>
+                <div className="rounded-[26px] border border-[#D7E2EA]/12 bg-white/[0.035] p-5">
+                  <h3 className="text-sm font-black uppercase tracking-widest text-[#D7E2EA]">
+                    How it helps
+                  </h3>
+                  <p className="mt-3 text-base font-light leading-relaxed text-[#D7E2EA]/72">
+                    {panel.item.helps}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 rounded-[26px] border border-[#D7E2EA]/12 bg-white/[0.035] p-5">
+                <h3 className="text-sm font-black uppercase tracking-widest text-[#D7E2EA]">
+                  Example work
+                </h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {panel.item.examples.map((example) => (
+                    <span
+                      key={example}
+                      className="rounded-full border border-[#D7E2EA]/14 bg-[#0C0C0C]/60 px-4 py-2 text-xs font-black uppercase tracking-widest text-[#D7E2EA]"
+                    >
+                      {example}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function MarqueeRow({
   items,
   direction,
   offset,
+  onProjectClick,
 }: {
   items: typeof projects;
   direction: "left" | "right";
   offset: number;
+  onProjectClick: (project: (typeof projects)[number], index: number) => void;
 }) {
   const tripled = [...items, ...items, ...items];
   const translate = direction === "right" ? offset - 240 : -(offset - 240);
@@ -862,18 +1148,26 @@ function MarqueeRow({
         }}
       >
         {tripled.map((project, index) => (
-          <ProjectArtwork
+          <button
             key={`${project.name}-${index}`}
-            project={project}
-            compact
-          />
+            type="button"
+            className="shrink-0 text-left"
+            onClick={() => onProjectClick(project, index % items.length)}
+            aria-label={`Open details for ${project.name}`}
+          >
+            <ProjectArtwork project={project} compact />
+          </button>
         ))}
       </div>
     </div>
   );
 }
 
-function MarqueeSection() {
+function MarqueeSection({
+  onProjectClick,
+}: {
+  onProjectClick: (project: (typeof projects)[number], index: number) => void;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [offset, setOffset] = useState(0);
 
@@ -900,8 +1194,18 @@ function MarqueeSection() {
       className="overflow-x-clip bg-[#0C0C0C] pt-24 pb-10 sm:pt-32 md:pt-40"
     >
       <div className="flex flex-col gap-3">
-        <MarqueeRow items={projects.slice(0, 3)} direction="right" offset={offset} />
-        <MarqueeRow items={projects.slice(3)} direction="left" offset={offset} />
+        <MarqueeRow
+          items={projects.slice(0, 3)}
+          direction="right"
+          offset={offset}
+          onProjectClick={onProjectClick}
+        />
+        <MarqueeRow
+          items={projects.slice(3)}
+          direction="left"
+          offset={offset}
+          onProjectClick={(project, index) => onProjectClick(project, index + 3)}
+        />
       </div>
     </section>
   );
@@ -1055,7 +1359,11 @@ function AboutSection() {
   );
 }
 
-function ServicesSection() {
+function ServicesSection({
+  onStrengthClick,
+}: {
+  onStrengthClick: (strength: (typeof strengths)[number], index: number) => void;
+}) {
   const strengthIcons = [MonitorSmartphone, Factory, Cpu, Database, Network];
 
   return (
@@ -1088,9 +1396,13 @@ function ServicesSection() {
             const accent = skillGroups[index]?.accent ?? "#C8FF2E";
             return (
           <FadeIn
+            as="button"
+            type="button"
             key={strength.name}
             delay={index * 0.1}
-            className="group min-h-[390px] overflow-hidden rounded-[32px] border border-[#D7E2EA]/15 bg-white/[0.035] p-6 transition-transform duration-300 hover:-translate-y-2"
+            onClick={() => onStrengthClick(strength, index)}
+            ariaLabel={`Open details for ${strength.name}`}
+            className="group min-h-[390px] overflow-hidden rounded-[32px] border border-[#D7E2EA]/15 bg-white/[0.035] p-6 text-left transition-transform duration-300 hover:-translate-y-2"
           >
             <div className="flex items-center justify-between gap-4">
               <span className="text-[clamp(2.5rem,5vw,5rem)] font-black leading-none text-[#D7E2EA]/10">
@@ -1119,6 +1431,10 @@ function ServicesSection() {
                 </span>
               ))}
             </div>
+            <span className="mt-8 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.26em] text-[#D7E2EA]/55 transition-colors duration-200 group-hover:text-[#C8FF2E]">
+              Open details
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
           </FadeIn>
             );
           })()
@@ -1143,15 +1459,20 @@ function LiveProjectButton() {
 function ProjectRailCard({
   project,
   index,
+  onOpen,
 }: {
   project: (typeof projects)[number];
   index: number;
+  onOpen: (project: (typeof projects)[number], index: number) => void;
 }) {
   return (
-    <motion.article
-      className="relative h-[min(64vh,620px)] min-h-[440px] w-[min(78vw,760px)] shrink-0 snap-center overflow-hidden rounded-[38px] border border-[#D7E2EA]/20 bg-[#0C0C0C]"
+    <motion.button
+      type="button"
+      onClick={() => onOpen(project, index)}
+      className="relative h-[min(64vh,620px)] min-h-[440px] w-[min(78vw,760px)] shrink-0 snap-center overflow-hidden rounded-[38px] border border-[#D7E2EA]/20 bg-[#0C0C0C] text-left"
       whileHover={{ y: -10, rotateX: 1.5, rotateY: -1.5 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
+      aria-label={`Open details for ${project.name}`}
     >
       <ProjectArtwork project={project} />
       <div className="pointer-events-none absolute right-7 top-6 text-[clamp(3rem,8vw,6.5rem)] font-black leading-none text-[#D7E2EA]/10">
@@ -1160,11 +1481,19 @@ function ProjectRailCard({
       <p className="pointer-events-none absolute bottom-20 left-6 max-w-[520px] text-[clamp(0.95rem,1.2vw,1.15rem)] font-light leading-relaxed text-[#D7E2EA]/80">
         {project.summary}
       </p>
-    </motion.article>
+      <span className="pointer-events-none absolute bottom-6 right-6 inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/18 bg-[#0C0C0C]/70 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#D7E2EA] backdrop-blur">
+        Open details
+        <ArrowUpRight className="h-3.5 w-3.5" />
+      </span>
+    </motion.button>
   );
 }
 
-function ProjectScroller() {
+function ProjectScroller({
+  onProjectClick,
+}: {
+  onProjectClick: (project: (typeof projects)[number], index: number) => void;
+}) {
   const railRef = useRef<HTMLDivElement>(null);
   const dragState = useRef({ active: false, startX: 0, scrollLeft: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -1241,6 +1570,7 @@ function ProjectScroller() {
             key={project.name}
             project={project}
             index={index}
+            onOpen={onProjectClick}
           />
         ))}
       </div>
@@ -1248,7 +1578,11 @@ function ProjectScroller() {
   );
 }
 
-function ProjectsSection() {
+function ProjectsSection({
+  onProjectClick,
+}: {
+  onProjectClick: (project: (typeof projects)[number], index: number) => void;
+}) {
   return (
     <section
       id="projects"
@@ -1271,7 +1605,7 @@ function ProjectsSection() {
             </p>
           </FadeIn>
         </div>
-        <ProjectScroller />
+        <ProjectScroller onProjectClick={onProjectClick} />
       </div>
     </section>
   );
@@ -1321,15 +1655,24 @@ function ContactSection() {
 }
 
 function App() {
+  const [activePanel, setActivePanel] = useState<ActivePanel>(null);
+
   return (
     <main className="min-h-screen overflow-x-clip bg-[#0C0C0C] font-kanit">
       <Header />
       <HeroSection />
-      <MarqueeSection />
+      <MarqueeSection
+        onProjectClick={(item, index) => setActivePanel({ type: "project", item, index })}
+      />
       <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
+      <ServicesSection
+        onStrengthClick={(item, index) => setActivePanel({ type: "strength", item, index })}
+      />
+      <ProjectsSection
+        onProjectClick={(item, index) => setActivePanel({ type: "project", item, index })}
+      />
       <ContactSection />
+      <DetailPanel panel={activePanel} onClose={() => setActivePanel(null)} />
     </main>
   );
 }
