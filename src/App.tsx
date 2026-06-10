@@ -1487,7 +1487,7 @@ function ProjectRailCard({
     <motion.button
       type="button"
       onClick={() => onOpen(project, index)}
-      className="relative h-[min(64vh,620px)] min-h-[440px] w-[min(78vw,760px)] shrink-0 snap-center overflow-hidden rounded-[38px] border border-[#D7E2EA]/20 bg-[#0C0C0C] text-left"
+      className="group relative h-[min(64vh,620px)] min-h-[440px] w-[min(78vw,760px)] shrink-0 snap-center overflow-hidden rounded-[38px] border border-[#D7E2EA]/20 bg-[#0C0C0C] text-left"
       whileHover={{ y: -10, rotateX: 1.5, rotateY: -1.5 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
       aria-label={`Open details for ${project.name}`}
@@ -1496,13 +1496,15 @@ function ProjectRailCard({
       <div className="pointer-events-none absolute right-7 top-6 text-[clamp(3rem,8vw,6.5rem)] font-black leading-none text-[#D7E2EA]/10">
         {String(index + 1).padStart(2, "0")}
       </div>
-      <p className="pointer-events-none absolute bottom-20 left-6 max-w-[520px] text-[clamp(0.95rem,1.2vw,1.15rem)] font-light leading-relaxed text-[#D7E2EA]/80">
-        {project.summary}
-      </p>
-      <span className="pointer-events-none absolute bottom-6 right-6 inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/18 bg-[#0C0C0C]/70 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#D7E2EA] backdrop-blur">
-        Open details
-        <ArrowUpRight className="h-3.5 w-3.5" />
-      </span>
+      <div className="pointer-events-none absolute bottom-20 left-6 right-6 flex items-end justify-between gap-5">
+        <p className="max-w-[520px] text-[clamp(0.95rem,1.2vw,1.15rem)] font-light leading-relaxed text-[#D7E2EA]/80">
+          {project.summary}
+        </p>
+        <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[#D7E2EA]/24 bg-[#0C0C0C]/78 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#D7E2EA] shadow-[0_0_28px_rgba(0,0,0,0.38)] backdrop-blur transition-colors duration-200 group-hover:border-[#C8FF2E]/50 group-hover:text-[#C8FF2E]">
+          Open details
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </span>
+      </div>
     </motion.button>
   );
 }
@@ -1528,6 +1530,7 @@ function ProjectScroller({
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     const rail = railRef.current;
     if (!rail || event.button !== 0) return;
+    if ((event.target as HTMLElement).closest("button")) return;
     dragState.current = {
       active: true,
       startX: event.clientX,
