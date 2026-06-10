@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Mail, Phone, X } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Mail, Phone, Sparkles, X } from "lucide-react";
 import {
   Barcode,
   CheckCircle,
@@ -24,8 +24,10 @@ import {
   useState,
 } from "react";
 
-const heroAvatar = "/assets/hero-3d-avatar.png";
-const heroVideo = "/assets/hero-programming-bg.mp4";
+const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
+const heroAvatar = assetPath("assets/hero-3d-avatar.png");
+const heroVideo = assetPath("assets/hero-programming-bg.mp4");
 
 const metrics = [
   ["13+", "years of production software delivery"],
@@ -190,7 +192,7 @@ const projects = [
     tags: ["Team Lead", "C++ / C#", "Oracle SQL", "SOAP API"],
     accent: "#BE4CFF",
     visual: "checklist",
-    video: "/assets/mes-facility-monitoring.mp4",
+    video: assetPath("assets/mes-facility-monitoring.mp4"),
     role: "Team Lead / MES Software Engineer",
     details: [
       "Led approval automation for EChecklist workflows used by manufacturing users.",
@@ -208,7 +210,7 @@ const projects = [
     tags: ["AngularJS", "Camstar", "Oracle", "Deployment"],
     accent: "#FFB84D",
     visual: "mes",
-    video: "/assets/camstar-interaction.mp4",
+    video: assetPath("assets/camstar-interaction.mp4"),
     role: "MES Application Engineer",
     details: [
       "Customized Camstar MES UI and backend behavior for semiconductor factory requirements.",
@@ -554,7 +556,7 @@ function HeroSection() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(200,255,46,0.16),transparent_32%),radial-gradient(circle_at_84%_16%,rgba(190,76,255,0.14),transparent_30%)]" />
       <div className="pointer-events-none absolute inset-0 opacity-24 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:56px_56px]" />
 
-      <div className="relative z-20 mx-auto grid w-full max-w-[1700px] flex-1 items-center gap-10 px-6 pb-10 pt-28 md:px-10 md:pt-32 lg:grid-cols-[0.95fr_1.05fr]">
+      <div className="relative z-20 mx-auto grid w-full max-w-[1700px] flex-1 items-center gap-10 px-6 pb-10 pt-28 md:px-10 md:pt-32 xl:grid-cols-[minmax(0,1fr)_420px] 2xl:grid-cols-[minmax(0,1fr)_520px]">
         <div>
           <FadeIn
             as="p"
@@ -564,24 +566,40 @@ function HeroSection() {
           >
             Senior Software Engineer / Team Lead / Solution Architect
           </FadeIn>
-          <FadeIn
-            as="h1"
-            delay={0.1}
-            y={36}
-            className="text-[clamp(3.6rem,8.6vw,9.4rem)] font-medium uppercase leading-[0.9] tracking-[0.02em] text-[#D7E2EA]"
-          >
-            <span className="block">Senior Software</span>
-            <span className="block text-[#C8FF2E] drop-shadow-[0_0_34px_rgba(200,255,46,0.22)]">
-              Engineer
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.18} y={20} className="mt-5 flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-[#D7E2EA]/20 bg-white/[0.045] px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#D7E2EA]">
-              Teh Theam Seong
-            </span>
-            <span className="rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#C8FF2E]">
-              Team Lead / Solution Architect
-            </span>
+          <FadeIn delay={0.1} y={36} className="relative max-w-5xl">
+            <motion.div
+              aria-hidden="true"
+              className="absolute -right-1 top-2 hidden h-20 w-20 items-center justify-center rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 text-[#C8FF2E] shadow-[0_0_42px_rgba(200,255,46,0.26)] sm:flex"
+              animate={{ rotate: [0, 8, 0], scale: [1, 1.08, 1] }}
+              transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles className="h-9 w-9" strokeWidth={2.4} />
+            </motion.div>
+            <motion.div
+              aria-hidden="true"
+              className="absolute right-[18%] top-[42%] hidden h-14 w-14 items-center justify-center rounded-2xl border border-[#62D7FF]/25 bg-[#62D7FF]/10 text-[#62D7FF] shadow-[0_0_34px_rgba(98,215,255,0.2)] lg:flex"
+              animate={{ y: [0, -10, 0], rotate: [0, -6, 0] }}
+              transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Cpu className="h-7 w-7" strokeWidth={2.4} />
+            </motion.div>
+            <h1 className="text-[clamp(4.4rem,9.6vw,11.2rem)] font-medium uppercase leading-[0.78] tracking-[0.01em]">
+              <span className="block text-[#C8FF2E] drop-shadow-[0_0_36px_rgba(200,255,46,0.18)]">
+                Seong
+              </span>
+              <span className="mt-3 block text-[0.52em] font-light tracking-[0.12em] text-[#D7E2EA]/94">
+                Portfolio
+              </span>
+            </h1>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <span className="rounded-full border border-[#D7E2EA]/20 bg-white/[0.045] px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#D7E2EA]">
+                Teh Theam Seong
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 px-5 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#C8FF2E]">
+                <Network className="h-4 w-4" strokeWidth={2.6} />
+                Senior Software Engineer / Team Lead / Solution Architect
+              </span>
+            </div>
           </FadeIn>
           <FadeIn
             as="p"
@@ -962,14 +980,14 @@ function DetailPanel({
 
   return (
     <motion.div
-      className="fixed inset-0 z-[80] grid place-items-center bg-[#050505]/78 px-5 py-8 backdrop-blur-xl"
+      className="fixed inset-0 z-[80] grid place-items-center bg-[#050505]/78 px-4 py-4 backdrop-blur-xl sm:px-5 sm:py-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
     >
       <motion.div
-        className="relative grid max-h-[88vh] w-full max-w-[1220px] overflow-hidden rounded-[38px] border border-[#D7E2EA]/18 bg-[#0C0C0C] shadow-[0_30px_120px_rgba(0,0,0,0.55)] lg:grid-cols-[0.92fr_1.08fr]"
+        className="relative grid h-[calc(100vh-32px)] max-h-[920px] min-h-0 w-full max-w-[1220px] overflow-hidden rounded-[32px] border border-[#D7E2EA]/18 bg-[#0C0C0C] shadow-[0_30px_120px_rgba(0,0,0,0.55)] sm:h-[calc(100vh-48px)] lg:grid-cols-[0.86fr_1.14fr]"
         style={{
           boxShadow: `0 0 110px ${accent}24, 0 30px 120px rgba(0,0,0,0.55)`,
         }}
@@ -987,11 +1005,11 @@ function DetailPanel({
           <X className="h-5 w-5" />
         </button>
 
-        <div className="relative min-h-[360px] overflow-hidden border-b border-[#D7E2EA]/12 lg:border-b-0 lg:border-r">
+        <div className="relative min-h-[260px] overflow-hidden border-b border-[#D7E2EA]/12 lg:min-h-0 lg:border-b-0 lg:border-r">
           {isProject ? (
             <ProjectArtwork project={panel.item} />
           ) : (
-            <div className="relative h-full min-h-[360px] overflow-hidden bg-[#111] p-8">
+            <div className="relative h-full min-h-[260px] overflow-hidden bg-[#111] p-8">
               <div
                 className="absolute inset-0"
                 style={{
@@ -1023,11 +1041,11 @@ function DetailPanel({
           )}
         </div>
 
-        <div className="overflow-y-auto p-7 md:p-9">
+        <div className="min-h-0 overflow-y-auto p-6 pb-10 md:p-8 md:pb-12">
           <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: accent }}>
             {subtitle}
           </p>
-          <h2 className="mt-4 max-w-3xl text-[clamp(2rem,4vw,4.6rem)] font-black uppercase leading-none text-[#D7E2EA]">
+          <h2 className="mt-4 max-w-3xl text-[clamp(2rem,3.25vw,4rem)] font-black uppercase leading-[0.95] text-[#D7E2EA]">
             {title}
           </h2>
 
@@ -1067,7 +1085,7 @@ function DetailPanel({
                   ))}
                 </div>
               </div>
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-2 pb-2">
                 {panel.item.tags.map((tag) => (
                   <span
                     key={tag}
