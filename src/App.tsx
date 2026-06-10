@@ -158,6 +158,7 @@ const projects = [
     tags: ["C#/.NET", "SQLite", "Reporting", "Product QA"],
     accent: "#C8FF2E",
     visual: "export",
+    video: assetPath("assets/softing-export-ui.mp4"),
     role: "Senior Software Application Engineer Lead",
     details: [
       "Enhanced Windows product modules for tester result import and product data handling.",
@@ -175,6 +176,7 @@ const projects = [
     tags: ["WPF", "WinForms", "PCAN/CAN", "Calibration"],
     accent: "#62D7FF",
     visual: "lidar",
+    video: assetPath("assets/lidar-calibration-control.mp4"),
     role: "Senior Software Engineer",
     details: [
       "Built WPF and WinForms tools for calibration, motor tuning and diagnostic workflows.",
@@ -228,6 +230,7 @@ const projects = [
     tags: ["SOAP", "REST", "Camstar", "24/7 Support"],
     accent: "#5DFFB0",
     visual: "integration",
+    video: assetPath("assets/amd-sap-inca-ship-services.mp4"),
     role: "Factory / Enterprise Integration Engineer",
     details: [
       "Delivered production-critical integration services around SAP, INCA and Camstar transactions.",
@@ -245,6 +248,7 @@ const projects = [
     tags: ["C#", "WinForms", "SQL", "API Integration"],
     accent: "#FF5D9E",
     visual: "portal",
+    video: assetPath("assets/ntt-access-review-sms-portal.mp4"),
     role: "Senior Software Application Engineer",
     details: [
       "Recovered and modernized a legacy Access Control Review Windows application after server migration issues.",
