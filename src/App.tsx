@@ -526,13 +526,13 @@ function HeroCommandCenter() {
 
 function HeroProjectStrip() {
   return (
-    <FadeIn delay={0.4} y={20} className="project-rail relative z-20 mt-8 overflow-x-auto pb-2">
-      <div className="flex w-max gap-3">
-        {projects.slice(0, 4).map((project) => (
+    <FadeIn delay={0.4} y={20} className="relative z-20 mt-8">
+      <div className="grid gap-3 md:grid-cols-3">
+        {projects.slice(0, 3).map((project) => (
           <a
             key={project.name}
             href="#projects"
-            className="group min-w-[230px] rounded-[24px] border border-[#D7E2EA]/12 bg-white/[0.035] p-4 transition-transform duration-300 hover:-translate-y-1"
+            className="group min-w-0 rounded-[24px] border border-[#D7E2EA]/12 bg-white/[0.035] p-4 transition-transform duration-300 hover:-translate-y-1"
           >
             <span
               className="mb-4 block h-2 w-12 rounded-full"
@@ -1216,7 +1216,7 @@ function MarqueeRow({
     <div className="relative h-[236px] w-full overflow-hidden sm:h-[270px]">
       <div
         ref={railRef}
-        className="project-rail flex h-full snap-x snap-mandatory gap-3 overflow-x-auto"
+        className="project-rail flex h-full gap-3 overflow-x-auto"
         data-project-marquee="true"
         data-segment-count={items.length}
         onScroll={normalizeScroll}
@@ -1225,7 +1225,7 @@ function MarqueeRow({
           <button
             key={`${project.name}-${index}`}
             type="button"
-            className="shrink-0 snap-start text-left"
+            className="shrink-0 text-left"
             onClick={() => onProjectClick(project, index % items.length)}
             aria-label={`Open details for ${project.name}`}
           >
@@ -1269,23 +1269,6 @@ function MarqueeSection({
     frameRef.current = window.requestAnimationFrame(tick);
   };
 
-  const getProjectRails = () =>
-    sectionRef.current
-      ? [...sectionRef.current.querySelectorAll<HTMLDivElement>("[data-project-marquee='true']")]
-      : [];
-
-  const startDirectionalAutoScroll = (direction: -1 | 1) => {
-    velocityRef.current = direction * 16;
-    startAutoScroll();
-  };
-
-  const nudgeProjectRails = (direction: -1 | 1) => {
-    getProjectRails().forEach((rail) => {
-      rail.scrollLeft += direction * Math.min(rail.clientWidth * 0.82, 440);
-      normalizeMarqueeRail(rail);
-    });
-  };
-
   const updateAutoScroll = (clientX: number) => {
     const section = sectionRef.current;
     if (!section) return;
@@ -1321,32 +1304,6 @@ function MarqueeSection({
       onPointerLeave={stopAutoScroll}
       onMouseLeave={stopAutoScroll}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-30">
-        <button
-          type="button"
-          aria-label="Scroll projects left"
-          className="pointer-events-auto absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-[#D7E2EA]/25 bg-[#0C0C0C]/72 text-[#D7E2EA] shadow-[0_0_34px_rgba(190,255,0,0.18)] backdrop-blur-md transition hover:border-[#BEFF00] hover:text-[#BEFF00] sm:left-5 sm:h-12 sm:w-12"
-          onPointerEnter={(event) => {
-            if (event.pointerType === "mouse") startDirectionalAutoScroll(-1);
-          }}
-          onPointerLeave={stopAutoScroll}
-          onClick={() => nudgeProjectRails(-1)}
-        >
-          <ChevronLeft size={22} strokeWidth={2.4} />
-        </button>
-        <button
-          type="button"
-          aria-label="Scroll projects right"
-          className="pointer-events-auto absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-[#D7E2EA]/25 bg-[#0C0C0C]/72 text-[#D7E2EA] shadow-[0_0_34px_rgba(190,255,0,0.18)] backdrop-blur-md transition hover:border-[#BEFF00] hover:text-[#BEFF00] sm:right-5 sm:h-12 sm:w-12"
-          onPointerEnter={(event) => {
-            if (event.pointerType === "mouse") startDirectionalAutoScroll(1);
-          }}
-          onPointerLeave={stopAutoScroll}
-          onClick={() => nudgeProjectRails(1)}
-        >
-          <ChevronRight size={22} strokeWidth={2.4} />
-        </button>
-      </div>
       <div className="flex flex-col gap-3">
         <MarqueeRow
           items={projects.slice(0, 3)}
