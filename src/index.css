@@ -34,7 +34,6 @@ img {
 
 .project-rail {
   scrollbar-width: none;
-  scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
 }
 

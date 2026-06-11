@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import {
   type ElementType,
+  type MouseEvent,
   type PointerEvent,
   type PropsWithChildren,
   useEffect,
@@ -914,7 +915,7 @@ function ProjectArtwork({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-[34px] border border-[#D7E2EA]/15 bg-[#111] ${compact ? "h-[270px] w-[420px]" : "h-full min-h-[220px] w-full"}`}
+      className={`group relative overflow-hidden rounded-[34px] border border-[#D7E2EA]/15 bg-[#111] ${compact ? "h-[230px] w-[86vw] max-w-[420px] sm:h-[270px] sm:w-[420px]" : "h-full min-h-[220px] w-full"}`}
       style={{
         background: `radial-gradient(circle at 16% 8%, ${project.accent}4f, transparent 30%), radial-gradient(circle at 80% 70%, ${project.accent}2f, transparent 34%), linear-gradient(135deg, #111, #080808 70%)`,
       }}
@@ -1158,34 +1159,73 @@ function DetailPanel({
   );
 }
 
+function getMarqueeSegmentWidth(rail: HTMLDivElement) {
+  const segmentCount = Number(rail.dataset.segmentCount || 0);
+  const buttons = rail.querySelectorAll<HTMLButtonElement>("button");
+  if (segmentCount > 0 && buttons.length > segmentCount) {
+    return buttons[segmentCount].offsetLeft - buttons[0].offsetLeft;
+  }
+  return rail.scrollWidth / 3;
+}
+
+function normalizeMarqueeRail(rail: HTMLDivElement) {
+  const segmentWidth = getMarqueeSegmentWidth(rail);
+  if (!segmentWidth) return;
+  if (rail.scrollLeft < segmentWidth * 0.35) {
+    rail.scrollLeft += segmentWidth;
+  } else if (rail.scrollLeft > segmentWidth * 1.65) {
+    rail.scrollLeft -= segmentWidth;
+  }
+}
+
 function MarqueeRow({
   items,
-  direction,
-  offset,
   onProjectClick,
 }: {
   items: typeof projects;
-  direction: "left" | "right";
-  offset: number;
   onProjectClick: (project: (typeof projects)[number], index: number) => void;
 }) {
+  const railRef = useRef<HTMLDivElement>(null);
   const tripled = [...items, ...items, ...items];
-  const translate = direction === "right" ? offset - 240 : -(offset - 240);
+
+  const normalizeScroll = () => {
+    const rail = railRef.current;
+    if (!rail) return;
+    normalizeMarqueeRail(rail);
+  };
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return undefined;
+
+    const resetPosition = () => {
+      rail.scrollLeft = getMarqueeSegmentWidth(rail);
+    };
+
+    const frame = window.requestAnimationFrame(resetPosition);
+    const timeout = window.setTimeout(resetPosition, 250);
+    window.addEventListener("resize", resetPosition);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+      window.removeEventListener("resize", resetPosition);
+    };
+  }, []);
 
   return (
-    <div className="relative h-[270px] w-full overflow-hidden">
+    <div className="relative h-[236px] w-full overflow-hidden sm:h-[270px]">
       <div
-        className="absolute left-0 top-0 flex gap-3"
-        style={{
-          transform: `translate3d(${translate}px, 0, 0)`,
-          willChange: "transform",
-        }}
+        ref={railRef}
+        className="project-rail flex h-full snap-x snap-mandatory gap-3 overflow-x-auto"
+        data-project-marquee="true"
+        data-segment-count={items.length}
+        onScroll={normalizeScroll}
       >
         {tripled.map((project, index) => (
           <button
             key={`${project.name}-${index}`}
             type="button"
-            className="shrink-0 text-left"
+            className="shrink-0 snap-start text-left"
             onClick={() => onProjectClick(project, index % items.length)}
             aria-label={`Open details for ${project.name}`}
           >
@@ -1203,41 +1243,117 @@ function MarqueeSection({
   onProjectClick: (project: (typeof projects)[number], index: number) => void;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [offset, setOffset] = useState(0);
+  const velocityRef = useRef(0);
+  const frameRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const updateOffset = () => {
+  const stopAutoScroll = () => {
+    velocityRef.current = 0;
+    if (frameRef.current !== null) {
+      window.cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+  };
+
+  const startAutoScroll = () => {
+    if (frameRef.current !== null) return;
+    const tick = () => {
       const section = sectionRef.current;
-      if (!section) return;
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      setOffset((window.scrollY - sectionTop + window.innerHeight) * 0.3);
+      if (section && Math.abs(velocityRef.current) > 0.1) {
+        section.querySelectorAll<HTMLDivElement>("[data-project-marquee='true']").forEach((rail) => {
+          rail.scrollLeft += velocityRef.current;
+          normalizeMarqueeRail(rail);
+        });
+      }
+      frameRef.current = window.requestAnimationFrame(tick);
     };
+    frameRef.current = window.requestAnimationFrame(tick);
+  };
 
-    updateOffset();
-    window.addEventListener("scroll", updateOffset, { passive: true });
-    window.addEventListener("resize", updateOffset);
-    return () => {
-      window.removeEventListener("scroll", updateOffset);
-      window.removeEventListener("resize", updateOffset);
-    };
-  }, []);
+  const getProjectRails = () =>
+    sectionRef.current
+      ? [...sectionRef.current.querySelectorAll<HTMLDivElement>("[data-project-marquee='true']")]
+      : [];
+
+  const startDirectionalAutoScroll = (direction: -1 | 1) => {
+    velocityRef.current = direction * 16;
+    startAutoScroll();
+  };
+
+  const nudgeProjectRails = (direction: -1 | 1) => {
+    getProjectRails().forEach((rail) => {
+      rail.scrollLeft += direction * Math.min(rail.clientWidth * 0.82, 440);
+      normalizeMarqueeRail(rail);
+    });
+  };
+
+  const updateAutoScroll = (clientX: number) => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    const edgeSize = 0.3;
+    const edgeStrength = ratio < edgeSize ? (edgeSize - ratio) / edgeSize : ratio > 1 - edgeSize ? (ratio - (1 - edgeSize)) / edgeSize : 0;
+    if (edgeStrength <= 0) {
+      velocityRef.current = 0;
+      return;
+    }
+    velocityRef.current = Math.sign(ratio - 0.5) * (5 + edgeStrength * 18);
+    startAutoScroll();
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    updateAutoScroll(event.clientX);
+  };
+
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+    updateAutoScroll(event.clientX);
+  };
+
+  useEffect(() => () => stopAutoScroll(), []);
 
   return (
     <section
       ref={sectionRef}
-      className="overflow-x-clip bg-[#0C0C0C] pt-24 pb-10 sm:pt-32 md:pt-40"
+      className="relative overflow-hidden bg-[#0C0C0C] pt-24 pb-10 sm:pt-32 md:pt-40"
+      onPointerMove={handlePointerMove}
+      onMouseMove={handleMouseMove}
+      onPointerLeave={stopAutoScroll}
+      onMouseLeave={stopAutoScroll}
     >
+      <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-30">
+        <button
+          type="button"
+          aria-label="Scroll projects left"
+          className="pointer-events-auto absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-[#D7E2EA]/25 bg-[#0C0C0C]/72 text-[#D7E2EA] shadow-[0_0_34px_rgba(190,255,0,0.18)] backdrop-blur-md transition hover:border-[#BEFF00] hover:text-[#BEFF00] sm:left-5 sm:h-12 sm:w-12"
+          onPointerEnter={(event) => {
+            if (event.pointerType === "mouse") startDirectionalAutoScroll(-1);
+          }}
+          onPointerLeave={stopAutoScroll}
+          onClick={() => nudgeProjectRails(-1)}
+        >
+          <ChevronLeft size={22} strokeWidth={2.4} />
+        </button>
+        <button
+          type="button"
+          aria-label="Scroll projects right"
+          className="pointer-events-auto absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-[#D7E2EA]/25 bg-[#0C0C0C]/72 text-[#D7E2EA] shadow-[0_0_34px_rgba(190,255,0,0.18)] backdrop-blur-md transition hover:border-[#BEFF00] hover:text-[#BEFF00] sm:right-5 sm:h-12 sm:w-12"
+          onPointerEnter={(event) => {
+            if (event.pointerType === "mouse") startDirectionalAutoScroll(1);
+          }}
+          onPointerLeave={stopAutoScroll}
+          onClick={() => nudgeProjectRails(1)}
+        >
+          <ChevronRight size={22} strokeWidth={2.4} />
+        </button>
+      </div>
       <div className="flex flex-col gap-3">
         <MarqueeRow
           items={projects.slice(0, 3)}
-          direction="right"
-          offset={offset}
           onProjectClick={onProjectClick}
         />
         <MarqueeRow
           items={projects.slice(3)}
-          direction="left"
-          offset={offset}
           onProjectClick={(project, index) => onProjectClick(project, index + 3)}
         />
       </div>
