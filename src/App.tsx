@@ -30,10 +30,10 @@ const heroAvatar = assetPath("assets/hero-3d-avatar.png");
 const heroVideo = assetPath("assets/hero-programming-bg.mp4");
 
 const metrics = [
-  ["13+", "years of production software delivery"],
-  ["6", "industrial and enterprise domains"],
-  ["24/7", "factory system support exposure"],
-  ["3", "engineers led on approval automation"],
+  ["13+", "years delivering production software"],
+  ["6", "industrial, enterprise and healthcare domains"],
+  ["24/7", "AMD factory support for around 6 years"],
+  ["3+", "engineers led across Softing, ST and offshore teams"],
 ];
 
 const experienceHighlights = [
@@ -42,14 +42,14 @@ const experienceHighlights = [
     company: "Softing Singapore Pte Ltd",
     period: "Jun 2023 - Present",
     summary:
-      "Leading Windows industrial/product software across requirements, system design, coding, debugging, documentation and release support.",
+      "Leading a 3-engineer product software team across requirements, system design, coding, debugging, documentation and release support.",
   },
   {
     role: "Senior Software Application Engineer",
     company: "NTT Limited",
     period: "May 2022 - Jun 2023",
     summary:
-      "Delivered legacy application recovery, Access Control Review modernization, SMS API vendor integration and recurring reporting support.",
+      "Supported NatSteel client applications and managed monthly email archiving across all servers for Singapore government hospital institutions, alongside Access Review and SMS portal modernization.",
   },
   {
     role: "Senior Software Engineer",
@@ -95,7 +95,7 @@ const strengths = [
     name: "C#/.NET Delivery",
     video: assetPath("assets/strength-dotnet-delivery.mp4"),
     description:
-      "C#/.NET Framework, WinForms, WPF, ASP.NET exposure, REST/SOAP services, database-driven applications and full SDLC delivery.",
+      "C#/.NET Framework, WinForms, WPF, ASP.NET, REST/SOAP services, database-driven applications and full SDLC delivery.",
     what:
       "I deliver practical .NET systems across WPF, WinForms, service integration, database workflows, reporting and maintenance-heavy legacy areas.",
     helps:
@@ -122,7 +122,7 @@ const strengths = [
       "I translate business or factory problems into clear technical tasks, coordinate delivery, review solutions and stay hands-on with debugging.",
     helps:
       "This gives teams clearer ownership, faster root-cause analysis and smoother release support when stakeholders need dependable answers.",
-    examples: ["Approval automation lead", "Requirement clarification", "Release documentation", "Production issue ownership"],
+    examples: ["3-engineer team lead", "Offshore team coordination", "Requirement clarification", "Production issue ownership"],
   },
 ];
 
@@ -240,28 +240,29 @@ const projects = [
     details: [
       "Delivered production-critical integration services around SAP, INCA and Camstar transactions.",
       "Built reporting and service flows using REST/SOAP integrations and semiconductor operations data.",
-      "Supported 24/7 factory system behavior where transaction failure affects production visibility.",
+      "Provided around 6 years of 24/7 AMD factory support where transaction failure affects production visibility.",
     ],
     impact:
-      "Improved business-system connectivity and operational support for global semiconductor production activity.",
+      "Improved business-system connectivity and provided dependable round-the-clock support for global semiconductor production activity.",
   },
   {
     name: "NTT Access Review & SMS Portal",
     category: "Application Recovery",
     summary:
-      "Modernized legacy Windows applications and upgraded a self-service reset password portal with new SMS API connectivity.",
-    tags: ["C#", "WinForms", "SQL", "API Integration"],
+      "Supported NatSteel client applications, modernized Access Review tooling, migrated SMS portal connectivity and handled monthly email archiving across all servers for Singapore government hospital institutions.",
+    tags: ["C#", "WinForms", "SMS API", "Email Archiving"],
     accent: "#FF5D9E",
     visual: "portal",
     video: assetPath("assets/ntt-access-review-sms-portal.mp4"),
     role: "Senior Software Application Engineer",
     details: [
+      "Took care of application support for NatSteel as an NTT client.",
       "Recovered and modernized a legacy Access Control Review Windows application after server migration issues.",
+      "Managed monthly email archiving across all servers for Singapore government hospital institutions.",
       "Upgraded a self-service password reset portal to work with a new SMS API vendor.",
-      "Handled requirement clarification, vendor communication, testing, fixes and production deployment.",
     ],
     impact:
-      "Restored critical business application continuity and delivered vendor API migration within tight support windows.",
+      "Kept client applications, access review workflows, SMS portal connectivity and monthly archiving operations stable across business and healthcare environments.",
   },
 ];
 
@@ -524,8 +525,8 @@ function HeroCommandCenter() {
 
 function HeroProjectStrip() {
   return (
-    <FadeIn delay={0.4} y={20} className="relative z-20 mt-8 overflow-hidden">
-      <div className="flex gap-3">
+    <FadeIn delay={0.4} y={20} className="project-rail relative z-20 mt-8 overflow-x-auto pb-2">
+      <div className="flex w-max gap-3">
         {projects.slice(0, 4).map((project) => (
           <a
             key={project.name}
@@ -566,16 +567,16 @@ function HeroSection() {
       <div className="pointer-events-none absolute inset-0 opacity-24 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:56px_56px]" />
 
       <div className="relative z-20 mx-auto grid w-full max-w-[1700px] flex-1 items-center gap-10 px-6 pb-10 pt-28 md:px-10 md:pt-32 xl:grid-cols-[minmax(0,1fr)_420px] 2xl:grid-cols-[minmax(0,1fr)_520px]">
-        <div>
+        <div className="min-w-0">
           <FadeIn
             as="p"
             delay={0.06}
             y={18}
-            className="mb-5 inline-flex rounded-full border border-[#C8FF2E]/35 bg-[#C8FF2E]/12 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#C8FF2E]"
+            className="mb-5 inline-flex max-w-full whitespace-normal rounded-full border border-[#C8FF2E]/35 bg-[#C8FF2E]/12 px-4 py-2 text-xs font-black uppercase leading-relaxed tracking-[0.2em] text-[#C8FF2E] sm:tracking-[0.28em]"
           >
             Senior Software Engineer / Team Lead / Solution Architect
           </FadeIn>
-          <FadeIn delay={0.1} y={36} className="relative max-w-5xl">
+          <FadeIn delay={0.1} y={36} className="relative max-w-full">
             <motion.div
               aria-hidden="true"
               className="absolute -right-1 top-2 hidden h-20 w-20 items-center justify-center rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 text-[#C8FF2E] shadow-[0_0_42px_rgba(200,255,46,0.26)] sm:flex"
@@ -592,7 +593,7 @@ function HeroSection() {
             >
               <Cpu className="h-7 w-7" strokeWidth={2.4} />
             </motion.div>
-            <h1 className="text-[clamp(4.4rem,9.6vw,11.2rem)] font-medium uppercase leading-[0.78] tracking-[0.01em]">
+            <h1 className="max-w-full text-[clamp(3.8rem,16vw,11.2rem)] font-medium uppercase leading-[0.78] tracking-[0.01em]">
               <span className="block text-[#C8FF2E] drop-shadow-[0_0_36px_rgba(200,255,46,0.18)]">
                 Seong
               </span>
@@ -604,8 +605,8 @@ function HeroSection() {
               <span className="rounded-full border border-[#D7E2EA]/20 bg-white/[0.045] px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-[#D7E2EA]">
                 Teh Theam Seong
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 px-5 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#C8FF2E]">
-                <Network className="h-4 w-4" strokeWidth={2.6} />
+              <span className="inline-flex max-w-full items-start gap-2 rounded-full border border-[#C8FF2E]/30 bg-[#C8FF2E]/10 px-5 py-2 text-xs font-black uppercase leading-relaxed tracking-[0.16em] text-[#C8FF2E] sm:tracking-[0.22em]">
+                <Network className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2.6} />
                 Senior Software Engineer / Team Lead / Solution Architect
               </span>
             </div>
@@ -1250,14 +1251,14 @@ function AboutSection() {
       id="about"
       className="relative overflow-hidden bg-[#0C0C0C] px-5 py-20 sm:px-8 md:px-10 md:py-28"
     >
-      <div className="pointer-events-none absolute left-1/2 top-10 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#C8FF2E]/10 blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-10 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-[#C8FF2E]/10 blur-[120px] sm:h-[520px] sm:w-[520px]" />
       <div className="mx-auto max-w-[1700px]">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <FadeIn>
             <p className="mb-5 text-sm font-black uppercase tracking-[0.32em] text-[#C8FF2E]">
               Work Experience
             </p>
-            <h2 className="hero-heading text-[clamp(3.6rem,10vw,155px)] font-black uppercase leading-[0.88] tracking-tight">
+            <h2 className="hero-heading text-[clamp(2.75rem,10vw,155px)] font-black uppercase leading-[0.88] tracking-tight">
               Engineering lead for real production systems.
             </h2>
           </FadeIn>
@@ -1404,8 +1405,8 @@ function ServicesSection({
       id="services"
       className="relative overflow-hidden rounded-t-[40px] bg-[#0C0C0C] px-5 py-20 sm:rounded-t-[50px] sm:px-8 sm:py-24 md:rounded-t-[60px] md:px-10 md:py-32"
     >
-      <div className="pointer-events-none absolute left-[-12%] top-[12%] h-[520px] w-[520px] rounded-full bg-[#62D7FF]/10 blur-[130px]" />
-      <div className="pointer-events-none absolute right-[-8%] bottom-[8%] h-[560px] w-[560px] rounded-full bg-[#C8FF2E]/10 blur-[130px]" />
+      <div className="pointer-events-none absolute left-[-12%] top-[12%] h-[320px] w-[320px] rounded-full bg-[#62D7FF]/10 blur-[130px] sm:h-[520px] sm:w-[520px]" />
+      <div className="pointer-events-none absolute right-[4%] bottom-[8%] h-[320px] w-[320px] rounded-full bg-[#C8FF2E]/10 blur-[130px] sm:right-[-8%] sm:h-[560px] sm:w-[560px]" />
       <FadeIn
         as="h2"
         y={40}
